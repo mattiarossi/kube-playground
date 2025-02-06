@@ -19,7 +19,7 @@ spec:
         storage:
           name: cluster-mr1-2-clone1
           kind: PersistentVolumeClaim
-          apiGroup: storage.hpe.com/v1
+          apiGroup: k8s.io/api/core/v1
   enableSuperuserAccess: true  
   monitoring:
     enablePodMonitor: true    
