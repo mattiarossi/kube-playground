@@ -4,7 +4,7 @@ metadata:
   name: cluster-mr1
   namespace: pgns
 spec:
-  instances: 2
+  instances: 3
   storage:
     pvcTemplate:
       accessModes:
