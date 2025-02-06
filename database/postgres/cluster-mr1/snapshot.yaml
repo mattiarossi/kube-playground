@@ -18,7 +18,7 @@ spec:
       volumeSnapshots:
         storage:
           name: cluster-mr1-2-clone1
-          kind: PersistentVolumeClaim
+          kind: PersistentVolumeClaims
           apiGroup: storage.k8s.io
   enableSuperuserAccess: true  
   monitoring:
