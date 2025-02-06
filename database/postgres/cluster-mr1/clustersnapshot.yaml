@@ -1,0 +1,28 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-mr1-snap
+  namespace: pgns
+spec:
+  instances: 1
+  storage:
+    pvcTemplate:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 5Gi
+      storageClassName: hpe-storageclass  
+  bootstrap:
+    recovery:
+      volumeSnapshots:
+        storage:
+          name: cluster-mr1-20250206143503
+          kind: VolumeSnapshot
+          apiGroup: snapshot.storage.k8s.io
+  enableSuperuserAccess: true  
+  monitoring:
+    enablePodMonitor: true    
+  backup:
+    volumeSnapshot: 
+      className: "hpe-snapshot"
