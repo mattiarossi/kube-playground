@@ -1,10 +1,29 @@
 apiVersion: postgresql.cnpg.io/v1
+kind: ImageCatalog
+metadata:
+  name: postgresql-remapped
+  namespace: pgns
+spec:
+  images:
+    - major: 15
+      image: ghcr.io/cloudnative-pg/postgresql:15.6
+    - major: 16
+      image: ghcr.io/cloudnative-pg/postgresql:17.2
+    - major: 17
+      image: ghcr.io/mattiarossi/postgresql:17.2-cron-plv8-pgaudit-
+---
+apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: cluster-mr1
   namespace: pgns
 spec:
   instances: 2
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ImageCatalog
+    name: postgresql-remapped
+    major: 17  
   storage:
     pvcTemplate:
       accessModes:
