@@ -10,7 +10,7 @@ spec:
     - major: 16
       image: ghcr.io/cloudnative-pg/postgresql:17.2
     - major: 17
-      image: ghcr.io/mattiarossi/postgresql:17.2-cron-plv8-pgaudit-
+      image: ghcr.io/mattiarossi/postgresql:17.2-cron-plv8-pgaudit--202502101725
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
