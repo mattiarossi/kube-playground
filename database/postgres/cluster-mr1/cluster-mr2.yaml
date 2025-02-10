@@ -1,0 +1,26 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-mr2
+  namespace: pgns
+spec:
+  instances: 2
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ImageCatalog
+    name: postgresql-remapped
+    major: 17  
+  storage:
+    pvcTemplate:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 5Gi
+      storageClassName: hpe-storageclass  
+  enableSuperuserAccess: true  
+  monitoring:
+    enablePodMonitor: true    
+  backup:
+    volumeSnapshot: 
+      className: "hpe-snapshot"
