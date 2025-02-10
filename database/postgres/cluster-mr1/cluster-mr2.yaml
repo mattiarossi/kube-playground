@@ -43,4 +43,32 @@ spec:
             name: cluster-mr2-rw-lb
           spec:
             type: NodePort
-      
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-mr2-snap
+  namespace: pgns
+spec:
+  instances: 1
+  storage:
+    pvcTemplate:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 5Gi
+      storageClassName: hpe-storageclass  
+  bootstrap:
+    recovery:
+      volumeSnapshots:
+        storage:
+          name: cluster-mr2-1-clone1
+          kind: PersistentVolumeClaim
+          apiGroup: ""
+  enableSuperuserAccess: true  
+  monitoring:
+    enablePodMonitor: true    
+  backup:
+    volumeSnapshot: 
+      className: "hpe-snapshot"      
