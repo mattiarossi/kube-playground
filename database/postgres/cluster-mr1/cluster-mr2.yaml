@@ -24,6 +24,15 @@ spec:
   backup:
     volumeSnapshot: 
       className: "hpe-snapshot"
+  postgresql:
+    parameters:
+      pg_stat_statements.max: "10000"
+      pg_stat_statements.track: all     
+      auto_explain.log_min_duration: "10s"
+      pgaudit.log: "all, -misc"
+      pgaudit.log_catalog: "off"
+      pgaudit.log_parameter: "on"
+      pgaudit.log_relation: "on"
   managed:
     services:
       disabledDefaultServices: []
