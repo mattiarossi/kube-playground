@@ -24,3 +24,14 @@ spec:
   backup:
     volumeSnapshot: 
       className: "hpe-snapshot"
+  managed:
+    services:
+      disabledDefaultServices: []
+      additional:
+      - selectorType: rw
+        serviceTemplate:
+          metadata:
+            name: cluster-mr2-rw-lb
+          spec:
+            type: NodePort
+      
