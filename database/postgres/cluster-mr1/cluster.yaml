@@ -12,29 +12,29 @@ spec:
     - major: 17
       image: ghcr.io/mattiarossi/postgresql:17.2-cron-plv8-pgaudit--202502101725
 ---
-apiVersion: postgresql.cnpg.io/v1
-kind: Cluster
-metadata:
-  name: cluster-mr1
-  namespace: pgns
-spec:
-  instances: 2
-  imageCatalogRef:
-    apiGroup: postgresql.cnpg.io
-    kind: ImageCatalog
-    name: postgresql-remapped
-    major: 17  
-  storage:
-    pvcTemplate:
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: 5Gi
-      storageClassName: hpe-storageclass  
-  enableSuperuserAccess: true  
-  monitoring:
-    enablePodMonitor: true    
-  backup:
-    volumeSnapshot: 
-      className: "hpe-snapshot"
+# apiVersion: postgresql.cnpg.io/v1
+# kind: Cluster
+# metadata:
+#   name: cluster-mr1
+#   namespace: pgns
+# spec:
+#   instances: 2
+#   imageCatalogRef:
+#     apiGroup: postgresql.cnpg.io
+#     kind: ImageCatalog
+#     name: postgresql-remapped
+#     major: 17  
+#   storage:
+#     pvcTemplate:
+#       accessModes:
+#         - ReadWriteOnce
+#       resources:
+#         requests:
+#           storage: 5Gi
+#       storageClassName: hpe-storageclass  
+#   enableSuperuserAccess: true  
+#   monitoring:
+#     enablePodMonitor: true    
+#   backup:
+#     volumeSnapshot: 
+#       className: "hpe-snapshot"
