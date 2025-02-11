@@ -1,45 +1,45 @@
-apiVersion: postgresql.cnpg.io/v1
-kind: Cluster
-metadata:
-  name: cluster-mr3
-  namespace: pgns
-spec:
-  instances: 2
-  imageCatalogRef:
-    apiGroup: postgresql.cnpg.io
-    kind: ImageCatalog
-    name: postgresql-remapped
-    major: 17  
-  storage:
-    pvcTemplate:
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: 5Gi
-      storageClassName: hpe-storageclass  
-  enableSuperuserAccess: true  
-  monitoring:
-    enablePodMonitor: true    
-  backup:
-    volumeSnapshot: 
-      className: "hpe-snapshot"
-  postgresql:
-    parameters:
-      pg_stat_statements.max: "10000"
-      pg_stat_statements.track: all     
-      auto_explain.log_min_duration: "10s"
-      pgaudit.log: "all, -misc"
-      pgaudit.log_catalog: "off"
-      pgaudit.log_parameter: "on"
-      pgaudit.log_relation: "on"
-  managed:
-    services:
-      disabledDefaultServices: []
-      additional:
-      - selectorType: rw
-        serviceTemplate:
-          metadata:
-            name: cluster-mr3-rw-lb
-          spec:
-            type: NodePort
+# apiVersion: postgresql.cnpg.io/v1
+# kind: Cluster
+# metadata:
+#   name: cluster-mr3
+#   namespace: pgns
+# spec:
+#   instances: 2
+#   imageCatalogRef:
+#     apiGroup: postgresql.cnpg.io
+#     kind: ImageCatalog
+#     name: postgresql-remapped
+#     major: 17  
+#   storage:
+#     pvcTemplate:
+#       accessModes:
+#         - ReadWriteOnce
+#       resources:
+#         requests:
+#           storage: 5Gi
+#       storageClassName: hpe-storageclass  
+#   enableSuperuserAccess: true  
+#   monitoring:
+#     enablePodMonitor: true    
+#   backup:
+#     volumeSnapshot: 
+#       className: "hpe-snapshot"
+#   postgresql:
+#     parameters:
+#       pg_stat_statements.max: "10000"
+#       pg_stat_statements.track: all     
+#       auto_explain.log_min_duration: "10s"
+#       pgaudit.log: "all, -misc"
+#       pgaudit.log_catalog: "off"
+#       pgaudit.log_parameter: "on"
+#       pgaudit.log_relation: "on"
+#   managed:
+#     services:
+#       disabledDefaultServices: []
+#       additional:
+#       - selectorType: rw
+#         serviceTemplate:
+#           metadata:
+#             name: cluster-mr3-rw-lb
+#           spec:
+#             type: NodePort
