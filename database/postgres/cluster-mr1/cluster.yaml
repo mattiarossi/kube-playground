@@ -2,7 +2,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: cluster-mr1
+  name: cluster-simon1
   namespace: pgns
 spec:
   instances: 2
